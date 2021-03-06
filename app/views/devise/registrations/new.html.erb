@@ -1,20 +1,35 @@
-<h2>Sign up</h2>
+<h2>新規登録</h2>
 
 <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name, "名前" %><br />
     <%= f.text_field :name, autofocus: true %>
   </div>
   
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, "メールアドレス" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
-
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :gender, "性別" %><br />
+    <%= f.label :man, "男性"  %>
+    <%= f.radio_button :gender, :男性 %>
+    <%= f.label :woman, "女性"  %>
+    <%= f.radio_button :gender, :女性 %>
+  </div>
+  <div class="field">
+    <%= f.label :address, "住所" %><br />
+    <%= f.select :address, User.addresses.keys, {}, include_blank: "選択して下さい" %>
+  </div>
+  <div class="field">
+    <%= f.label :age, "年齢" %><br />
+    <%= f.select :age, [["10代", "10"], ["20代", "20"], ["30代", "30"], ["40代", "40"], ["50代", "50"], ["60代", "60"], ["70代", "70"], ["80代", "80"]], include_blank: "選択して下さい" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :password, "パスワード" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
