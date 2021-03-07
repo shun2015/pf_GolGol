@@ -1,0 +1,14 @@
+<%= render 'users/show', user: @user %>
+<h4>投稿詳細</h4>
+<div class="post-body">
+  <p>ユーザーネーム：<%= @post.user.name %></p>
+  <p>タイトル：<%= @post.title %></p>
+  <p>プレー日：<%= @post.date.strftime('%Y/%m/%d') %></p>
+  <p>スコア：<%= @post.score %></p>
+  <%= attachment_image_tag @post, :image, :size =>'200x200' %>
+  <p>説明：<%= @post.impression %></p>
+  <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @post.user == current_user %>
+    <%= link_to "削除", post_path(@post), method: :delete %>
+  <% end %>
+</div>

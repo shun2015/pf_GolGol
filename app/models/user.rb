@@ -3,12 +3,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-    
+
+  has_many :posts, dependent: :destroy
+
   validates :name, presence: true
   validates :age, presence: true
   validates :address, presence: true
   validates :gender, presence: true
-  
+
   attachment :profile_image
   enum gender: { 男性: 0, 女性: 1}
   enum address:{
