@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  date: 2021-03-07 03:05:49
+  score: 1
+  image_id: MyString
+  impression: MyText
+
+two:
+  user_id: 1
+  date: 2021-03-07 03:05:49
+  score: 1
+  image_id: MyString
+  impression: MyText

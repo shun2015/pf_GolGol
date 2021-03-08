@@ -15,7 +15,7 @@
   <%= f.select :address, User.addresses.keys, {} %><br />
 
   <label for="inputAge">年齢</label>
-  <%= f.select :age, [["10代", "10代"], ["20代", "20代"], ["30代", "30代"], ["40代", "40代"], ["50代", "50代"], ["60代", "60代"], ["70代", "70代"], ["80代", "80代"]], include_blank: "選択して下さい" %><br />
+  <%= f.select :age, [["10代", "10"], ["20代", "20"], ["30代", "30"], ["40代", "40"], ["50代", "50"], ["60代", "60"], ["70代", "70"], ["80代", "80"]], include_blank: "選択して下さい" %><br />
 
   <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
   <label for="inputImage">プロフィール画像</label>

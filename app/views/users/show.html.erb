@@ -1,1 +1,34 @@
-<%= render 'users/show', user: @user %>
+<div class="container m-3">
+  <div class="row">
+    <div class="col-md-4">
+      <%= render 'users/show', user: @user %>
+    </div>
+    <div class="col-md-7">
+      <h4><%= @user.name %>さんの投稿一覧</h4>
+      <% @posts.each do |post| %>
+        <div class="post-body">
+          <%= link_to post_path(post.id) do %>
+            <%= attachment_image_tag post.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+          <% end %>
+          <p>ユーザーネーム：<%= post.user.name %></p>
+          <p>タイトル：<%= post.title %></p>
+          <p>プレー日：<%= post.date.strftime('%Y/%m/%d') %></p>
+          <p>スコア：<%= post.score %></p>
+          <P>画像</P>
+            <% if post.post_images.present? %>
+              <% post.post_images.each do |image| %>
+                <%= attachment_image_tag image, :image, :size =>"100x100" %>
+              <% end %>
+            <% else %>
+              画像はありません。
+            <% end %>
+          <p>感想：<%= post.impression %></p>
+          <p>投稿日時：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+          <% if post.user == current_user %>
+            <%= link_to "削除", post_path(post), method: :delete %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
