@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.integer :user_id, :null => false
       t.datetime :date, :null => false
       t.integer :score
-      t.string :image_id
+      # t.string :image_id
       t.text :impression, :null => false
       t.string :title, :null => false
 
