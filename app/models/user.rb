@@ -7,7 +7,12 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+
+  has_many :following_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :follower_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :following, through: :following_relationships, source: :followed
+  has_many :followers, through: :follower_relationships, source: :follower
+
   validates :name, presence: true
   validates :age, presence: true
   validates :address, presence: true
@@ -27,4 +32,16 @@ class User < ApplicationRecord
      福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,
      沖縄県:47
    }
+
+  def follow(user_id)
+    following_relationships.create(followed_id: user_id)
+  end
+
+  def unfollow(user_id)
+    following_relationships.find_by(followed_id: user_id).destroy
+  end
+
+  def following?(user)
+    following.include?(user)
+  end
 end
