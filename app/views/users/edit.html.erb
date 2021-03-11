@@ -23,6 +23,9 @@
 
   <label for="inputIntroduction">紹介文</label><br />
   <%= f.text_area :introduction, id:"inputIntroduction", placeholder:"紹介文"%><br />
-
+  
+  <label for="inputAverage_score">平均スコア</label>
+  <%= f.select :average_score, [["130代", "130"],["120代", "120"], ["110代", "110"], ["100代", "100"], ["90代", "90"], ["80代", "80"], ["70代", "70"], ["60代", "60"]], include_blank: "選択して下さい" %><br />
+  
   <%= f.submit "変更を保存" %>
 <% end %>
