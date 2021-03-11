@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
   get '/about' => "homes#about"
+  get 'chat/:id' => 'chats#show', as: 'chat'
   devise_for :users
   
+  resources :chats, only: [:create]
   resources :users, only: [:index, :show, :edit, :update]do
     resource :relationships, only: [:create, :destroy]
       member do

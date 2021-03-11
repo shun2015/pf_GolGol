@@ -3,7 +3,6 @@
     <div class="col-md-4">
       <h2>ユーザー詳細ページ</h2>
       <%= render 'users/show', user: @user %>
-      
       フォロー:
       <%= link_to following_user_path(@user) do %>
         <%= @user.following.count %>
