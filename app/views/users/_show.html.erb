@@ -3,9 +3,18 @@
 性別<%= user.gender %><br />
 住所<%= user.address %><br />
 年齢<%= user.age %>代<br />
+平均スコア
+<% if user.average_score.present? %>
+  <%= user.average_score %>代
+<% else %>
+  登録していません
+<% end %><br />
 メールアドレス<%= user.email %><br />
 紹介文<%= user.introduction %><br />
 <% if user.id == current_user.id %>
   <p><%= link_to "プロフィール編集", edit_user_path(user) %></p>
 <% end %><br />
 
+<% if current_user != user %>
+  <%= link_to 'chatを始める', chat_path(user.id)%>
+<% end %>

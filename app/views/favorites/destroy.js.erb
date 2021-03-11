@@ -1,0 +1,2 @@
+$(".favorite").html("<%= escape_javascript(render partial: 'favorites/favorite', locals: {post: @post}) %>");
+$(".favorite").html("<%= j(render 'favorites/favorite', post: @post) %>");
