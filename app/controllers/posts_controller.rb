@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  
   def new
     @post = Post.new
   end
@@ -7,7 +8,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save
-    redirect_to posts_path
+    redirect_to post_path(@post)
   end
 
   def index
@@ -38,8 +39,11 @@ class PostsController < ApplicationController
   
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path
+    if @post.destroy
+      redirect_to user_path(current_user)
+    else
+      render :edit
+    end
   end
 
   private
@@ -47,4 +51,5 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :date, :score, :impression, post_images_images: [])
   end
+  
 end

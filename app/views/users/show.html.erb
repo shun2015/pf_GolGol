@@ -1,56 +1,52 @@
 <div class="container m-3">
   <div class="row">
-    <div class="col-md-4">
-      <h2>ユーザー詳細ページ</h2>
+    <div class="col-md-3 text-center">
       <%= render 'users/show', user: @user %>
-      フォロー:
-      <%= link_to following_user_path(@user) do %>
-        <%= @user.following.count %>
-      <% end %>
-      フォロワー:
-      <%= link_to followers_user_path(@user) do %>
-        <%= @user.followers.count %>
-      <% end %><br>
-            
-      <% unless @user == current_user %>
-        <% if current_user.following?(@user) %>
-          <%= link_to 'フォロー外す', user_relationships_path(@user), method: :DELETE %>
-        <% else %>
-          <%= link_to 'フォローする', user_relationships_path(@user), method: :POST %>
-        <% end %>
-      <% end %>
-
     </div>
     
-    <div class="col-md-7">
-      
-      <%= line_chart @posts.chart_date, min: 60, max: 130, curve: false, xtitle: "日付", ytitle: "スコア", width: "600px", height: "200px", discrete: true %>
+    <div class="col-md-9">
+      <h4>スコア履歴</h4>
+      <%= line_chart @posts.chart_date, min: 60, curve: false, xtitle: "日付", ytitle: "スコア", width: "900px", height: "200px", discrete: true %>
       
       <h4><%= @user.name %>さんの投稿一覧</h4>
-      <% @posts.each do |post| %>
-        <div class="post-body">
-          <%= link_to post_path(post.id) do %>
-            <%= attachment_image_tag post.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-          <% end %>
-          <p>ユーザーネーム：<%= post.user.name %></p>
-          <p>タイトル：<%= post.title %></p>
-          <p>プレー日：<%= post.date.strftime('%Y/%m/%d') %></p>
-          <p>スコア：<%= post.score %></p>
-          <P>画像</P>
-            <% if post.post_images.present? %>
-              <% post.post_images.each do |image| %>
-                <%= attachment_image_tag image, :image, :size =>"100x100" %>
-              <% end %>
-            <% else %>
-              画像はありません。
+      <table class="table">
+        <tr>
+          <th></th>
+          <th>名前</th>
+          <th>プレー日</th>
+          <th>スコア</th>
+          <th>画像</th>
+          <th>内容</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% @posts.each do |post| %>
+          <tr>
+            <td>
+              <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %>
+            </td>
+            <td><%= post.user.name %></td>
+            <td><%= post.date.strftime('%Y/%m/%d') %></td>
+            <td><%= post.score %></td>
+            <td>
+              <% if post.post_images.present? %>
+                <% post.post_images.each do |image| %>
+                  <%= attachment_image_tag image, :image, :size =>"50x50" %>
+                <% end %>
+              <% else %>
+                画像はありません
+                <% end %>
+            </td>
+            <td><%= post.impression %></td>
+            <td><%= link_to "詳細", post_path(post) %></td>
+            <td>
+            <% if post.user == current_user %>
+              <%= link_to "削除", post_path(post), method: :delete, data: {confirm: "削除しますか？"} %>
             <% end %>
-          <p>感想：<%= post.impression %></p>
-          <p>投稿日時：<%= post.created_at.strftime('%Y/%m/%d') %></p>
-          <% if post.user == current_user %>
-            <%= link_to "削除", post_path(post), method: :delete %>
-          <% end %>
-        </div>
-      <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tabele>
     </div>
   </div>
 </div>

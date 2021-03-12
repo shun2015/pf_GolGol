@@ -1,21 +1,47 @@
-<%= search_form_for @q do |f| %>
-  <%= f.label :average_score, "平均スコア" %>
-  <%= f.select :average_score_eq, [["130代", "130"],["120代", "120"], ["110代", "110"], ["100代", "100"], ["90代", "90"], ["80代", "80"], ["70代", "70"], ["60代", "60"]], {include_blank: "選択して下さい"}, class: 'user' %><br />
-  
-  <%= f.label :gender, "性別" %>
-　<%= f.radio_button :gender_eq, '', {:checked => true} %>指定なし
-  <%= f.radio_button :gender_eq, 0 %>男性
-  <%= f.radio_button :gender_eq, 1 %>女性<br />
-  
-  <%= f.submit "検索" %>
-<% end %>
-
-<% @users.each do |user| %>
-  <%= link_to user_path(user) do %>
-    <%= user.name%>
-  <% end %>
-  <%= user.average_score %>
-  <%= user.age %>
-  <%= user.gender %>
-  <%= user.address %><br>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mt-5">
+      <h4>検索フォーム</h4>
+      <%= search_form_for @q do |f| %>
+        <%= f.label :name_or_introduction, "フリーワード" %>
+        <%= f.search_field :name_or_introduction_cont %><br />
+        
+        <%= f.label :average_score, "平均スコア" %>
+        <%= f.select :average_score_eq, [["130代", "130"],["120代", "120"], ["110代", "110"], ["100代", "100"], ["90代", "90"], ["80代", "80"], ["70代", "70"], ["60代", "60"]], {include_blank: "選択して下さい"}, class: 'user' %><br />
+        
+        <%= f.label :gender, "性別" %>
+      　<%= f.radio_button :gender_eq, '', {:checked => true} %>指定なし
+        <%= f.radio_button :gender_eq, 0 %>男性
+        <%= f.radio_button :gender_eq, 1 %>女性<br />
+        
+        <%= f.submit "検索" %>
+      <% end %>
+    </div>
+    
+    <div class="col-md-8 mt-5">
+      <h4>会員一覧</h4>
+      <table class="table">
+        <tr>
+          <th>名前</th>
+          <th>平均スコア</th>
+          <th>年齢</th>
+          <th>性別</th>
+          <th>住所</th>
+        </tr>
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <%= link_to user_path(user) do %>
+                <%= user.name%>
+              <% end %>
+            </td>
+            <td><%= user.average_score %></td>
+            <td><%= user.age %></td>
+            <td><%= user.gender %></td>
+            <td><%= user.address %></td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
