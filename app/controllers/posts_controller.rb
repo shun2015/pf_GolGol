@@ -15,6 +15,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @posts = Post.all
     @post = Post.find(params[:id])
     @user = @post.user
     @post_comment = PostComment.new
@@ -22,6 +23,11 @@ class PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
+    if @post.user == current_user
+      render "edit"
+    else
+      redirect_to post_path
+    end
   end
   
   def update

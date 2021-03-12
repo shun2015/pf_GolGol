@@ -7,9 +7,6 @@
   <%= f.radio_button :gender_eq, 0 %>男性
   <%= f.radio_button :gender_eq, 1 %>女性<br />
   
-  <%= f.label :address, "住所" %>
-  <%= f.select :address_eq, User.addresses.keys, {} %>
-  
   <%= f.submit "検索" %>
 <% end %>
 

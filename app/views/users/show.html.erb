@@ -23,6 +23,9 @@
     </div>
     
     <div class="col-md-7">
+      
+      <%= line_chart @posts.chart_date, min: 60, max: 130, curve: false, xtitle: "日付", ytitle: "スコア", width: "600px", height: "200px", discrete: true %>
+      
       <h4><%= @user.name %>さんの投稿一覧</h4>
       <% @posts.each do |post| %>
         <div class="post-body">
