@@ -10,4 +10,7 @@ class Post < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
   
+  def self.chart_date
+    order(date: :asc).pluck('date', 'score').to_h
+  end
 end

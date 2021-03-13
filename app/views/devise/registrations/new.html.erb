@@ -27,7 +27,10 @@
     <%= f.label :age, "年齢" %><br />
     <%= f.select :age, [["10代", "10"], ["20代", "20"], ["30代", "30"], ["40代", "40"], ["50代", "50"], ["60代", "60"], ["70代", "70"], ["80代", "80"]], include_blank: "選択して下さい" %>
   </div>
-  
+  <div class="field">
+    <%= f.label :average_score, "平均スコア" %><br />
+    <%= f.select :average_score, [["130代", "130"],["120代", "120"], ["110代", "110"], ["100代", "100"], ["90代", "90"], ["80代", "80"], ["70代", "70"], ["60代", "60"]], include_blank: "選択して下さい" %>
+  </div>
   <div class="field">
     <%= f.label :password, "パスワード" %>
     <% if @minimum_password_length %>
