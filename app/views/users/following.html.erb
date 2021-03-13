@@ -9,6 +9,11 @@
               <td><%= user.name %></td>
               <td>フォロー数:<%= user.following.count %></td>
               <td>フォロワー数:<%= user.followers.count %></td>
+              <td>
+                <% if current_user != user %>
+                  <%= link_to 'chatを始める', chat_path(user.id)%>
+                <% end %>
+              </td>
               <td><%= link_to "詳細", user_path(user) %></td>
             <% end %>
           <% else %>

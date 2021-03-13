@@ -13,7 +13,6 @@
           <%= f.label :woman, "女性"  %>
           <%= f.radio_button :gender, :女性 %>
         </div>
-        <!--なぜかaddress+esだと通る-->
         <label for="inputAddress">住所</label>
         <%= f.select :address, User.addresses.keys, {} %><br />
       

@@ -7,7 +7,6 @@
     <div class="col-md-9">
       <h4>スコア履歴</h4>
       <%= line_chart @posts.chart_date, min: 60, curve: false, xtitle: "日付", ytitle: "スコア", width: "900px", height: "200px", discrete: true %>
-      
       <h4><%= @user.name %>さんの投稿一覧</h4>
       <table class="table">
         <tr>
@@ -23,7 +22,7 @@
         <% @posts.each do |post| %>
           <tr>
             <td>
-              <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %>
+              <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", :size =>"50x50" %>
             </td>
             <td><%= post.user.name %></td>
             <td><%= post.date.strftime('%Y/%m/%d') %></td>
@@ -31,7 +30,7 @@
             <td>
               <% if post.post_images.present? %>
                 <% post.post_images.each do |image| %>
-                  <%= attachment_image_tag image, :image, :size =>"50x50" %>
+                  <%= attachment_image_tag image, :image, :size =>"30x30" %>
                 <% end %>
               <% else %>
                 画像はありません
