@@ -5,6 +5,7 @@
       <table class="table">
         <tr>
           <th>名前</th>
+          <th>スコア</th>
           <th>画像</th>
           <th>コメント件数</th>
         </tr>
@@ -12,9 +13,10 @@
         <% @posts.each do |post| %>
           <td>
             <%= link_to post_path(post) do %>
-              <%= post.user.name %></p>
+              <%= post.user.name %>
             <% end %>
           </td>
+          <td><%= post.score %></td>
           <td>
             <% if post.post_images.present? %>
               <% post.post_images.each do |image| %>

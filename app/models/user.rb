@@ -20,7 +20,8 @@ class User < ApplicationRecord
   validates :age, presence: true
   validates :address, presence: true
   validates :gender, presence: true
-
+  validates :average_score, presence: true
+  
   attachment :profile_image
   enum gender: { 男性: 0, 女性: 1}
   enum address:{
