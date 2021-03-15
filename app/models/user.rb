@@ -48,4 +48,14 @@ class User < ApplicationRecord
   def following?(user)
     following.include?(user)
   end
+  
+  attr_accessor :average
+
+  def average_score
+    if posts.present?
+      self.posts.sum(:score) / self.posts.length
+    else
+      0
+    end
+  end
 end

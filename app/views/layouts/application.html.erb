@@ -32,6 +32,9 @@
                 <%= link_to '投稿フォーム', new_post_path %>
               </li>
               <li class="nav-item mr-3">
+                <%= link_to 'ランキング', rank_path %>
+              </li>
+              <li class="nav-item mr-3">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
               </li>
             <% else %>

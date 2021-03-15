@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get '/about' => "homes#about"
   get 'chat/:id' => 'chats#show', as: 'chat'
+  get "/rank" => "users#rank"
   devise_for :users
   
   resources :chats, only: [:create]

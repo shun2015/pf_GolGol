@@ -6,26 +6,27 @@
 
     <div class="col-md-9">
       <h4>スコア履歴</h4>
-      <%= line_chart @posts.chart_date, min: 60, xtitle: "日付", ytitle: "スコア", width: "900px", height: "200px", discrete: true, curve: false %>
+      <% if @posts.chart_date.present? %>
+        <%= line_chart @posts.chart_date, min: 60, xtitle: "日付", ytitle: "スコア", width: "900px", height: "200px", discrete: true, curve: false %>
+      <% else%>
+      投稿がありません
+      <% end %>
       <h4><%= @user.name %>さんの投稿一覧</h4>
-      <table class="table">
+      <table class="table" style="table-layout:fixed;">
         <tr>
           <th></th>
-          <th>名前</th>
           <th>プレー日</th>
           <th>スコア</th>
           <th>画像</th>
-          <th>内容</th>
-          <th></th>
+          <th style="width:200px;">内容</th>
           <th></th>
         </tr>
         <% @posts.each do |post| %>
           <tr>
-            <td>
+            <td class="py-md-0">
               <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", :size =>"50x50" %>
             </td>
-            <td><%= post.user.name %></td>
-            <td><%= post.date.strftime('%Y年%m月%d日') %></td>
+            <td><%= post.date.strftime('%Y-%m-%d') %></td>
             <td><%= post.score %></td>
             <td>
               <% if post.post_images.present? %>
@@ -33,12 +34,12 @@
                   <%= attachment_image_tag image, :image, :size =>"30x30" %>
                 <% end %>
               <% else %>
-                画像はありません
+                
                 <% end %>
             </td>
-            <td><%= post.impression %></td>
-            <td><%= link_to "詳細", post_path(post) %></td>
-            <td>
+            <td class ="text-overflow"><%= post.impression %></td>
+            <td><%= link_to "詳細", post_path(post) %>
+            
             <% if post.user == current_user %>
               <%= link_to "削除", post_path(post), method: :delete, data: {confirm: "削除しますか？"} %>
             <% end %>

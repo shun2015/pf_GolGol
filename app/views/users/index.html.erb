@@ -6,8 +6,8 @@
         <%= f.label :name_or_introduction, "フリーワード" %>
         <%= f.search_field :name_or_introduction_cont %><br />
         
-        <%= f.label :average_score, "平均スコア" %>
-        <%= f.select :average_score_eq, [["130代", "130"], ["120代", "120"], ["110代", "110"], ["100代", "100"], ["90代", "90"], ["80代", "80"], ["70代", "70"], ["60代", "60"]], {include_blank: "選択して下さい"}, class: 'user' %><br />
+        <%= f.label :profile_score, "平均スコア" %>
+        <%= f.select :profile_score, [["130代", "130"], ["120代", "120"], ["110代", "110"], ["100代", "100"], ["90代", "90"], ["80代", "80"], ["70代", "70"], ["60代", "60"]], {include_blank: "選択して下さい"}, class: 'user' %><br />
         
         <%= f.label :gender, "性別" %>
       　<%= f.radio_button :gender_eq, '', {:checked => true} %>指定なし
@@ -29,7 +29,7 @@
       <table class="table">
         <tr>
           <th><%= sort_link(@q, :name, "名前") %></th>
-          <th><%= sort_link(@q, :average_score, "平均スコア") %></th>
+          <th><%= sort_link(@q, :profile_score, "平均スコア") %></th>
           <th><%= sort_link(@q, :age, "年齢") %></th>
           <th><%= sort_link(@q, :gender, "性別") %></th>
           <th><%= sort_link(@q, :address, "住所") %></th>
@@ -38,10 +38,10 @@
           <tr>
             <td>
               <%= link_to user_path(user) do %>
-                <%= user.name%>
+                <%= user.name %>
               <% end %>
             </td>
-            <td><%= user.average_score %></td>
+            <td><%= user.profile_score %></td>
             <td><%= user.age %></td>
             <td><%= user.gender %></td>
             <td><%= user.address %></td>
@@ -50,4 +50,5 @@
       </table>
     </div>
   </div>
+  
 </div>
