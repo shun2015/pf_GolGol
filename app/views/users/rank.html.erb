@@ -4,12 +4,14 @@
       <h4>投稿履歴の<br>平均スコアランキング</h4>
       <table class="table">
         <tr>
+          <th>順位</th>
           <th>名前</th>
           <th>平均スコア</th>
         </tr>
-        <% @user_avg.each do |user|%>
+        <% @user_avg.each.with_index(1) do |user,i|%>
           <tr>
             <% if user.posts.present? %>
+            <td><%= i %>位</td>
               <td>
                 <%= link_to user_path(user) do %>
                   <%= user.name %>
