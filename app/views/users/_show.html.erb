@@ -5,8 +5,8 @@
 住所：<%= user.address %><br />
 年齢：<%= user.age %>代<br />
 平均スコア：
-<% if user.average_score.present? %>
-  <%= user.average_score %>代
+<% if user.profile_score.present? %>
+  <%= user.profile_score %>代
 <% else %>
   登録していません
 <% end %><br />

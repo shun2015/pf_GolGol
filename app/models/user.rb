@@ -20,7 +20,8 @@ class User < ApplicationRecord
   validates :age, presence: true
   validates :address, presence: true
   validates :gender, presence: true
-
+  validates :average_score, presence: true
+  
   attachment :profile_image
   enum gender: { 男性: 0, 女性: 1}
   enum address:{
@@ -46,5 +47,15 @@ class User < ApplicationRecord
 
   def following?(user)
     following.include?(user)
+  end
+  
+  attr_accessor :average
+
+  def average_score
+    if posts.present?
+      self.posts.sum(:score) / self.posts.length
+    else
+      0
+    end
   end
 end

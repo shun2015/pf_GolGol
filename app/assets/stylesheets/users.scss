@@ -4,3 +4,8 @@
 .word-break {
   word-break: break-all;
 }
+.text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,52 +1,55 @@
-<h2>新規登録</h2>
+<div class="container my-5">
+  <div class="card w-25 mx-auto shadow-lg p-md-4">
+    <h2 class="text-center">新規登録</h2>
 
-<%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  
-  <div class="field">
-    <%= f.label :name, "名前" %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  <div class="field">
-    <%= f.label :gender, "性別" %><br />
-    <%= f.label :man, "男性"  %>
-    <%= f.radio_button :gender, :男性 %>
-    <%= f.label :woman, "女性"  %>
-    <%= f.radio_button :gender, :女性 %>
-  </div>
-  <div class="field">
-    <%= f.label :address, "住所" %><br />
-    <%= f.select :address, User.addresses.keys, {}, include_blank: "選択して下さい" %>
-  </div>
-  <div class="field">
-    <%= f.label :age, "年齢" %><br />
-    <%= f.select :age, [["10代", "10"], ["20代", "20"], ["30代", "30"], ["40代", "40"], ["50代", "50"], ["60代", "60"], ["70代", "70"], ["80代", "80"]], include_blank: "選択して下さい" %>
-  </div>
-  <div class="field">
-    <%= f.label :average_score, "平均スコア" %><br />
-    <%= f.select :average_score, [["130代", "130"],["120代", "120"], ["110代", "110"], ["100代", "100"], ["90代", "90"], ["80代", "80"], ["70代", "70"], ["60代", "60"]], include_blank: "選択して下さい" %>
-  </div>
-  <div class="field">
-    <%= f.label :password, "パスワード" %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+      <div class="field text-center">
+        <%= f.label :name, "名前" %><br />
+        <%= f.text_field :name, autofocus: true %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+      <div class="field text-center my-2">
+        <%= f.label :email, "メールアドレス" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+      <div class="field text-center">
+        <%= f.label :gender, "性別" %><br />
+        <%= f.label :man, "男性"  %>
+        <%= f.radio_button :gender, :男性 %>
+        <%= f.label :woman, "女性"  %>
+        <%= f.radio_button :gender, :女性 %>
+      </div>
+      <div class="field text-center my-2">
+        <%= f.label :address, "住所" %><br />
+        <%= f.select :address, User.addresses.keys, {}, include_blank: "選択して下さい" %>
+      </div>
+      <div class="field text-center">
+        <%= f.label :age, "年齢" %><br />
+        <%= f.select :age, [["10代", "10"], ["20代", "20"], ["30代", "30"], ["40代", "40"], ["50代", "50"], ["60代", "60"], ["70代", "70"], ["80代", "80"]], include_blank: "選択して下さい" %>
+      </div>
+      <div class="field text-center my-2">
+        <%= f.label :profile_score, "平均スコア" %><br />
+        <%= f.select :profile_score, [["130代", "130"],["120代", "120"], ["110代", "110"], ["100代", "100"], ["90代", "90"], ["80代", "80"], ["70代", "70"], ["60代", "60"]], include_blank: "選択して下さい" %>
+      </div>
+      <div class="field text-center">
+        <%= f.label :password, "パスワード" %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
 
-<%= render "devise/shared/links" %>
+      <div class="field text-center my-2">
+        <%= f.label :password_confirmation, "パスワード(確認用)" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <div class="actions text-center my-4">
+        <%= f.submit "新規登録", class:"btn btn-info" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
