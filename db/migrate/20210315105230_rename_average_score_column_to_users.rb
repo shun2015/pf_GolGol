@@ -3,4 +3,3 @@ class RenameAverageScoreColumnToUsers < ActiveRecord::Migration[5.2]
     rename_column :users, :average_score, :profile_score
   end
 end
-ol
