@@ -1,0 +1,39 @@
+<div class="container m-3">
+  <div class="row">
+    <div class="col-md-3 text-center">
+      <%= render 'users/show', user: @user %>
+    </div>
+
+    <div class="col-md-8 offset-1">
+      <h4>投稿詳細</h4>
+      <div class="post-body">
+        <p>ユーザーネーム：<%= @post.user.name %></p>
+        <p>タイトル：<%= @post.title %></p>
+        <p>プレー日：<%= @post.date.strftime('%Y/%m/%d') %></p>
+        <p>スコア：<%= @post.score %></p>
+        <P>画像</P>
+        <% if @post.post_images.present? %>
+          <% @post.post_images.each do |image| %>
+            <%= attachment_image_tag image, :image, :size =>"200x200" %>
+          <% end %>
+        <% else %>
+          画像はありません。
+        <% end %>
+        <p>感想：<%= @post.impression %></p>
+        <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+        <div class="favorite">
+          <%= render 'favorites/favorite', post: @post %>
+        </div>
+        <% if @post.user == current_user %>
+          <%= link_to "編集", edit_post_path(@post) %>
+        <% end %>
+        <% if @post.user == current_user %>
+          <%= link_to "削除", post_path(@post), method: :delete %>
+        <% end %>
+        <div class="comments m-3">
+          <%= render 'post_comments/post_comment', {post: @post, post_comment: @post_comment} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

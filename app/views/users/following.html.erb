@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1>フォローリスト</h1>
+      <table class="table">
+        <% if @users.present? %>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.name %></td>
+              <td>フォロー数:<%= user.following.count %></td>
+              <td>フォロワー数:<%= user.followers.count %></td>
+              <td>
+                <% if current_user != user %>
+                  <%= link_to 'chatを始める', chat_path(user.id)%>
+                <% end %>
+              </td>
+              <td><%= link_to "詳細", user_path(user) %></td>
+            <% end %>
+          <% else %>
+            ユーザーはいません
+          <% end %>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
