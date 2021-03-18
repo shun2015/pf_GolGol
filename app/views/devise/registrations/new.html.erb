@@ -34,6 +34,10 @@
         <%= f.select :profile_score, [["130代", "130"],["120代", "120"], ["110代", "110"], ["100代", "100"], ["90代", "90"], ["80代", "80"], ["70代", "70"], ["60代", "60"]], include_blank: "選択して下さい" %>
       </div>
       <div class="field text-center">
+        <%= f.label :introduction, "紹介文" %><br />
+        <%= f.text_field :introduction, autofocus: true %>
+      </div>
+      <div class="field text-center">
         <%= f.label :password, "パスワード" %>
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> 文字以上)</em>
