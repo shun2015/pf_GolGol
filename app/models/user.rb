@@ -16,11 +16,15 @@ class User < ApplicationRecord
   has_many :user_rooms
   has_many :chats
 
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  
   validates :name, presence: true
   validates :age, presence: true
   validates :address, presence: true
   validates :gender, presence: true
   validates :average_score, presence: true
+  validates :introduction, length: { maximum: 150 }
   
   attachment :profile_image
   enum gender: { 男性: 0, 女性: 1}
