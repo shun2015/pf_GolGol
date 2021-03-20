@@ -7,7 +7,7 @@
     <div class="col-md-9">
       <h4>スコア履歴</h4>
       <% if @posts.chart_date.present? %>
-        <%= line_chart @posts.chart_date, min: 60, xtitle: "日付", ytitle: "スコア", width: "900px", height: "200px", discrete: true, curve: false %>
+        <%= line_chart @posts.chart_date, min: 60, xtitle: "日付", ytitle: "スコア", width: "100%", height: "200px", discrete: true, curve: false %>
       <% else%>
       投稿がありません
       <% end %>

@@ -3,7 +3,9 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :post_images, dependent: :destroy
   has_many :favorites, dependent: :destroy
-
+  
+  has_many :notifications, dependent: :destroy
+  
   accepts_attachments_for :post_images, attachment: :image
 
   def favorited_by?(user)
@@ -27,4 +29,17 @@ class Post < ApplicationRecord
     #   [now.since(2.days), 68],
     # ]
   end
+  def create_notification(current_user, user)
+    past_notices = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, user.id, id, 'favorite'])
+     
+    if past_notices.blank?
+      notification = current_user.active_notifications.new(
+        post_id: id,
+        visited_id: user.id,
+        action: 'favorite'
+      )
+      notification.save
+    end
+  end
+  
 end

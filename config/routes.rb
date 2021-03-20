@@ -17,4 +17,5 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
+  resources :notifications, only: :index
 end
