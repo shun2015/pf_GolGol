@@ -30,6 +30,7 @@
         <% if @post.user == current_user %>
           <%= link_to "削除", post_path(@post), method: :delete %>
         <% end %>
+        <p>いいね<%= @post.favorites.count %></p>
         <div class="comments m-3">
           <%= render 'post_comments/post_comment', {post: @post, post_comment: @post_comment} %>
         </div>
