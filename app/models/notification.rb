@@ -1,6 +1,6 @@
 class Notification < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
-  #optional: trueは、nilを許可するものです。
+  #optional: trueは、nilを許可するもの
   belongs_to :post, optional: true
   belongs_to :post_comment, optional: true
   belongs_to :visitor, class_name: 'User', foreign_key: 'visitor_id', optional: true
