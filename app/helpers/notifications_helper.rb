@@ -6,6 +6,8 @@ module NotificationsHelper
     case notification.action
       when "favorite" then
         "#{visitor}が#{your_post}にいいね！しました"
+      when "comment" then
+        "#{visitor}が#{your_post}にコメント！しました"
     end
   end
   def unchecked_notifications

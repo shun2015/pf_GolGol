@@ -1,6 +1,6 @@
 <div class="container m-3">
   <div class="row">
-    <div class="col-md-3 text-center">
+    <div class="col-md-3">
       <%= render 'users/show', user: @user %>
     </div>
 
@@ -34,12 +34,12 @@
                   <%= attachment_image_tag image, :image, :size =>"30x30" %>
                 <% end %>
               <% else %>
-                
+
                 <% end %>
             </td>
             <td class ="text-overflow"><%= post.impression %></td>
             <td><%= link_to "詳細", post_path(post) %>
-            
+
             <% if post.user == current_user %>
               <%= link_to "削除", post_path(post), method: :delete, data: {confirm: "削除しますか？"} %>
             <% end %>

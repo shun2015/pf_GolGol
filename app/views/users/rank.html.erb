@@ -1,26 +1,33 @@
 <div class="container mt-4">
+  
   <div class="row justify-content-center">
     <div class="col-md-8">
       <h4>投稿履歴の<br>平均スコアランキング</h4>
-      <table class="table">
-        <tr>
-          <th>名前</th>
-          <th>平均スコア</th>
-        </tr>
-        <% @user_avg.each do |user|%>
-          <tr>
-            <% if user.posts.present? %>
-              <td>
-                <%= link_to user_path(user) do %>
-                  <%= user.name %>
-                <% end %>
-              </td>
-              <td><%= user.average_score %></td>
-            <% else %>
+      <% avg = 0 %>
+      <% j = 1 %>
+      <% @user_avg.each.with_index(1) do |user, i| %>
+          <% if i == 1 %>
+            <% avg = user.average_score %>
+          <% end %>
+          <% if user.average_score != avg %>
+            <% j = i %>
+            第<%= j %>位
+            <%= link_to user_path(user) do %>
+              <%= user.name %>
             <% end %>
-          <% end %><br>
-        </tr>
-      </table>
+            平均スコア：<%= user.average_score %>
+            <% avg = user.average_score %>
+          <!--同順位の表示-->
+          <% else %>
+            <% avg = user.average_score %>
+            第<%= j %>位
+            <%= link_to user_path(user) do %>
+              <%= user.name %>
+            <% end %>
+            平均スコア：<%= user.average_score %>
+          <% end %>
+          <br>
+      <% end %>
     </div>
   </div>
 </div>

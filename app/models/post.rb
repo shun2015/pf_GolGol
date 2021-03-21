@@ -41,5 +41,17 @@ class Post < ApplicationRecord
       notification.save
     end
   end
+  def create_notification(current_user, user)
+    past_notices = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, user.id, id, 'comment'])
+     
+    if past_notices.blank?
+      notification = current_user.active_notifications.new(
+        post_id: id,
+        visited_id: user.id,
+        action: 'comment'
+      )
+      notification.save
+    end
+  end
   
 end
