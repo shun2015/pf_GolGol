@@ -41,13 +41,16 @@
                 <%= user.name %>
               <% end %>
             </td>
-            <td><%= user.profile_score %></td>
-            <td><%= user.age %></td>
+            <td><%= user.profile_score %>代</td>
+            <td><%= user.age %>代</td>
             <td><%= user.gender %></td>
             <td><%= user.address %></td>
           <% end %>
         </tr>
       </table>
+      <div class="pagination justify-content-center">
+        <%= paginate @user_s %>
+      </div>
     </div>
   </div>
 
