@@ -5,29 +5,41 @@
       <h4>投稿履歴の<br>平均スコアランキング</h4>
       <% avg = 0 %>
       <% j = 1 %>
-      <% @user_avg.each.with_index(1) do |user, i| %>
-          <% if i == 1 %>
-            <% avg = user.average_score %>
-          <% end %>
-          <% if user.average_score != avg %>
-            <% j = i %>
-            第<%= j %>位
-            <%= link_to user_path(user) do %>
-              <%= user.name %>
+      <table class="table">
+        <tr>
+          <th>順位</th>
+          <th>名前</th>
+          <th>平均スコア</th>
+        </tr>
+        <% @user_avg.each.with_index(1) do |user, i| %>
+          <tr>
+            <% if i == 1 %>
+              <% avg = user.average_score %>
             <% end %>
-            平均スコア：<%= user.average_score %>
-            <% avg = user.average_score %>
-          <!--同順位の表示-->
-          <% else %>
-            <% avg = user.average_score %>
-            第<%= j %>位
-            <%= link_to user_path(user) do %>
-              <%= user.name %>
+            <% if user.average_score != avg %>
+              <% j = i %>
+              <td>第<%= j %>位</td>
+              <td>
+                <%= link_to user_path(user) do %>
+                  <%= user.name %>
+                <% end %>
+              </td>
+              <td>平均スコア：<%= user.average_score %></td>
+              <% avg = user.average_score %>
+            <!--同順位の表示-->
+            <% else %>
+              <% avg = user.average_score %>
+              <td>第<%= j %>位</td>
+              <td>
+                <%= link_to user_path(user) do %>
+                  <%= user.name %>
+                <% end %>
+              </td>
+              <td>平均スコア：<%= user.average_score %></td>
             <% end %>
-            平均スコア：<%= user.average_score %>
           <% end %>
-          <br>
-      <% end %>
+        </tr>
+      </table>
     </div>
   </div>
 </div>

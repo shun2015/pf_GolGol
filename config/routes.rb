@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get "/rank" => "users#rank"
   devise_for :users
   
-  resources :chats, only: [:create]
   resources :users, only: [:index, :show, :edit, :update]do
     resource :relationships, only: [:create, :destroy]
       member do
@@ -17,5 +16,7 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
+  
+  resources :chats, only: [:create]
   resources :notifications, only: :index
 end

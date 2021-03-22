@@ -5,9 +5,9 @@ module NotificationsHelper
     your_post = link_to 'あなたの投稿', notification.post, class: "your_post"
     case notification.action
       when "favorite" then
-        "#{visitor}が#{your_post}にいいね！しました"
+        "#{visitor}さんが#{your_post}にいいね！しました"
       when "comment" then
-        "#{visitor}が#{your_post}にコメント！しました"
+        "#{visitor}さんが#{your_post}にコメント！しました"
     end
   end
   def unchecked_notifications

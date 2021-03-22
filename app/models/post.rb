@@ -3,8 +3,11 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :post_images, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
   has_many :notifications, dependent: :destroy
+  
+  validates :title, length: { in: 1..50 }
+  validates :score, presence: true
+  validates :impression, length: { in: 1..500 }
   
   accepts_attachments_for :post_images, attachment: :image
 

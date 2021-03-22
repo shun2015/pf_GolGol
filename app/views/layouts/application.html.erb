@@ -11,9 +11,9 @@
   </head>
 
   <header class="shadow-sm">
-    <nav class="navbar navbar-expand-md navbar-light">
+    <nav class="navbar navbar-expand-md navbar-light bg-success">
       <div class="container my-3">
-        <%= link_to 'トップページ', root_path %>
+        <%= link_to 'トップページ', root_path, class:"text-light" %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,35 +21,35 @@
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
               <li class="nav-item mr-3">
-                <%= link_to 'マイページ', user_path(current_user.id) %>
+                <%= link_to 'マイページ', user_path(current_user.id), class:"text-light" %>
               </li>
               <% if unchecked_notifications.any? %>
                 <i class="fa fa-circle" style="color: gold;"></i>
               <% end %>
               <li class="nav-item mr-3">
-                <%= link_to '通知', notifications_path %>
+                <%= link_to '通知', notifications_path, class:"text-light" %>
               </li>
               <li class="nav-item mr-3">
-                <%= link_to '会員一覧', users_path %>
+                <%= link_to '会員一覧', users_path, class:"text-light" %>
               </li>
               <li class="nav-item mr-3">
-                <%= link_to '投稿一覧', posts_path %>
+                <%= link_to '投稿一覧', posts_path, class:"text-light" %>
               </li>
               <li class="nav-item mr-3">
-                <%= link_to '投稿フォーム', new_post_path %>
+                <%= link_to '投稿フォーム', new_post_path, class:"text-light" %>
               </li>
               <li class="nav-item mr-3">
-                <%= link_to 'ランキング', rank_path %>
+                <%= link_to 'ランキング', rank_path, class:"text-light" %>
               </li>
               <li class="nav-item mr-3">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-light" %>
               </li>
             <% else %>
               <li class="nav-item mr-3">
-                <%= link_to "新規登録", new_user_registration_path %>
+                <%= link_to "新規登録", new_user_registration_path, class:"text-light" %>
               </li>
               <li class="nav-item mr-3">
-                <%= link_to "ログイン", new_user_session_path %>
+                <%= link_to "ログイン", new_user_session_path, class:"text-light" %>
               </li>
             <% end %>
           </ul>
