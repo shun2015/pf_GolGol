@@ -44,7 +44,7 @@ class Post < ApplicationRecord
       notification.save
     end
   end
-  def create_notification(current_user, user)
+  def create_notification_comment(current_user, user)
     past_notices = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, user.id, id, 'comment'])
      
     if past_notices.blank?
