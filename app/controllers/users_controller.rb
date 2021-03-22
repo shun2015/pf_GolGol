@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
     @q = User.ransack(params[:q])
-    @user_s = @q.result(distinct: true)
+    @user_s = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   def show
@@ -37,10 +36,11 @@ class UsersController < ApplicationController
   end
 
   def rank
-    @user_avg = User.all.each do |user|
-      user.average = user.average_score
-    end
-    @user_avg = @user_avg.sort_by { |user| user.average }
+    @user_avg = User.all.joins(:posts).group(:id).select("AVG(posts.score) as average_score, users.*").order("average_score asc")
+    #@user_avg = User.all.each do |user|
+    #  user.average = user.average_score
+    ##end
+    #@user_avg = @user_avg.sort_by { |user| user.average }
   end
 
   private
