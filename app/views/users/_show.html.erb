@@ -14,7 +14,10 @@
         <% end %></li>
     <li>紹介文</li>
   </ul>
-    <div class="word-break"><%= user.introduction %></div><br />
+    <div class="word-break">
+      <!--入力通りの改行で表示-->
+      <%= safe_join(user.introduction.split("\n"),tag(:br)) %>
+    </div><br />
         <% if user.id == current_user.id %>
           <p><%= link_to "プロフィール編集", edit_user_path(user) %></p>
         <% end %><br />

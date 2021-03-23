@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   end
   
   resources :chats, only: [:create]
-  resources :notifications, only: :index
+  resources :notifications, only: [:index, :destroy]
 end

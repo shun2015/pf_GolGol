@@ -1,13 +1,23 @@
-<p>コメント件数：<%= post.post_comments.count %></p>
-<% post.post_comments.each do |post_comment| %>
-  <%= post_comment.user.name %>
-  <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-  <% if post_comment.user == current_user %>
-      <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true %>
-  <% end %><br>
-<% end %>
-
-<%= form_with(model:[post, post_comment], remote: true) do |f| %>
-  <%= f.text_area :comment,placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
-<% end %>
+<div class="row">
+  <div class="col-md-4">
+    <% if post_comment.errors.any? %>
+      <% post_comment.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+    <% end %>
+    
+    <%= form_with(model:[post, post_comment], remote: true) do |f| %>
+      <%= f.text_area :comment,placeholder: "コメント" %>
+      <%= f.submit "送信する" %>
+    <% end %>
+  </div>
+  <div class="col-md-5">
+    <% post.post_comments.each do |post_comment| %>
+      <%= post_comment.user.name %>
+      <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+      <% if post_comment.user == current_user %>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true %>
+      <% end %><br>
+    <% end %>
+  </div>
+</div>

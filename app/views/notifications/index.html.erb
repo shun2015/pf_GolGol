@@ -1,5 +1,6 @@
 <div class="col-xs-10 offset-1 mt-5">
   <h5>通知</h5>
+  <%= link_to "通知削除", notification_path(@notifications), method: :delete, data: {confirm: "削除しますか？"} ,class: "fas fa-trash" %>
   <% if @notifications.exists? %>
     <%= render @notifications %>
   <% else %>
