@@ -1,23 +1,32 @@
-<div class="row">
-  <div class="col-md-4">
-    <% if post_comment.errors.any? %>
-      <% post_comment.errors.full_messages.each do |message| %>
-        <%= message %>
-      <% end %>
-    <% end %>
-    
-    <%= form_with(model:[post, post_comment], remote: true) do |f| %>
-      <%= f.text_area :comment,placeholder: "コメント" %>
-      <%= f.submit "送信する" %>
-    <% end %>
-  </div>
-  <div class="col-md-5">
+<table class="table">
+  <tr>
+    <th>ユーザー名</th>
+    <th>コメント</th>
+    <th></th>
+    <th></th>
+  </tr>
     <% post.post_comments.each do |post_comment| %>
-      <%= post_comment.user.name %>
-      <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-      <% if post_comment.user == current_user %>
+    <tr>
+      <td width=150><%= post_comment.user.name %></td>
+      <td width=300><%= post_comment.comment %></td>
+      <td width=130><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+      <td width=70>
+        <% if post_comment.user == current_user %>
           <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true %>
-      <% end %><br>
+        <% end %><br>
+      </td>
     <% end %>
-  </div>
+  </tr>
+</table>
+<div class="comment-field my-5">
+  <% if post_comment.errors.any? %>
+    <% post_comment.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+
+  <%= form_with(model:[post, post_comment], remote: true) do |f| %>
+    <%= f.text_area :comment,placeholder: "コメント", size: "50x2" %><br>
+    <%= f.submit "送信する" %>
+  <% end %>
 </div>

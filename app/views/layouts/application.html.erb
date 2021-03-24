@@ -36,9 +36,6 @@
                 <%= link_to '投稿一覧', posts_path, class:"text-light" %>
               </li>
               <li class="nav-item mr-3">
-                <%= link_to '投稿フォーム', new_post_path, class:"text-light" %>
-              </li>
-              <li class="nav-item mr-3">
                 <%= link_to 'ランキング', rank_path, class:"text-light" %>
               </li>
               <li class="nav-item mr-3">
@@ -60,4 +57,9 @@
   <body>
     <%= yield %>
   </body>
+  <footer class="footer bg-success ">
+    <div class="container">
+      <p class="text-center">GolGol</p>
+    </div>
+  </footer>
 </html>

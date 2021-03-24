@@ -4,7 +4,7 @@
       <h4>投稿検索</h4>
       <%= search_form_for @q do |f| %>
         <%= f.label :title_or_impression, "フリーワード" %>
-        <%= f.search_field :title_or_impression_cont %><br />
+        <%= f.search_field :title_or_impression_cont, placeholder: "ゴルフ場名や県名など" %><br />
 
         <%= f.submit "検索" %>
       <% end %>
@@ -14,7 +14,7 @@
       <h4>投稿一覧</h4>
       <table class="table">
         <tr>
-          <th>名前</th>
+          <th>ユーザー名</th>
           <th>タイトル</th>
           <th>画像</th>
           <th>コメント件数</th>

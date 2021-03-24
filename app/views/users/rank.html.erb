@@ -8,7 +8,7 @@
       <table class="table">
         <tr>
           <th>順位</th>
-          <th>名前</th>
+          <th>ユーザー名</th>
           <th>平均スコア</th>
         </tr>
         <% @user_avg.each.with_index(1) do |user, i| %>
@@ -24,7 +24,7 @@
                   <%= user.name %>
                 <% end %>
               </td>
-              <td>平均スコア：<%= user.average_score %></td>
+              <td><%= user.average_score %></td>
               <% avg = user.average_score %>
             <!--同順位の表示-->
             <% else %>
@@ -35,7 +35,7 @@
                   <%= user.name %>
                 <% end %>
               </td>
-              <td>平均スコア：<%= user.average_score %></td>
+              <td><%= user.average_score %></td>
             <% end %>
           <% end %>
         </tr>

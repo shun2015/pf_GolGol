@@ -14,3 +14,27 @@
  *= require_self
  */
 @import "bootstrap";
+// フッター最下部表示 (html.body.footer)
+html {
+  min-height: 100%;
+  position: relative;
+}
+ 
+body {
+  margin-bottom: 3em;
+}
+ 
+.main-container {
+  background-image: image-url("courtney.jpg");
+  height: 710px;
+  background-size: cover;
+  background-position: 50% 80%;
+  text-align: center;
+  padding-top: 250px; 
+}
+.footer {
+  bottom: 0;
+  width: 100%;
+  height: 3em;
+  position: absolute;
+}
