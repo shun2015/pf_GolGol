@@ -19,18 +19,18 @@ html {
   min-height: 100%;
   position: relative;
 }
- 
+
 body {
   margin-bottom: 3em;
 }
- 
-.main-container {
+
+.top-container {
   background-image: image-url("courtney.jpg");
   height: 710px;
   background-size: cover;
   background-position: 50% 80%;
   text-align: center;
-  padding-top: 250px; 
+  padding-top: 250px;
 }
 .footer {
   bottom: 0;

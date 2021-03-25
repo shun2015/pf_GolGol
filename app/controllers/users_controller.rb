@@ -37,10 +37,6 @@ class UsersController < ApplicationController
 
   def rank
     @user_avg = User.all.joins(:posts).group(:id).select("AVG(posts.score) as average_score, users.*").order("average_score asc")
-    #@user_avg = User.all.each do |user|
-    #  user.average = user.average_score
-    ##end
-    #@user_avg = @user_avg.sort_by { |user| user.average }
   end
 
   private

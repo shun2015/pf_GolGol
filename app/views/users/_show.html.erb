@@ -1,7 +1,7 @@
 <div>
   <h4 class="text-center">プロフィール</h4>
-  <div class="text-center"><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %><br /></div>
-  <ul type="disc" class= "ml-4">
+  <div class=" text-center"><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %><br /></div>
+  <ul type="disc">
     <li>ユーザー：<%= user.name %></li>
     <li>性別：<%= user.gender %></li>
     <li>住所：<%= user.address %></li>
@@ -19,11 +19,6 @@
     <!--入力通りの改行で表示-->
     <%= safe_join(user.introduction.split("\n"),tag(:br)) %>
   </div><br>
-  <div class="text-center">
-    <% if user.id == current_user.id %>
-      <p><%= link_to "プロフィール編集", edit_user_path(user) %></p>
-    <% end %><br />
-  </div>
   <div class="text-center">
     フォロー
     <%= link_to following_user_path(@user) do %>
@@ -45,5 +40,11 @@
     <% if current_user != user %>
       <%= link_to 'chatを始める', chat_path(user.id)%>
     <% end %>
+  </div>
+  
+  <div class="text-center">
+    <% if user.id == current_user.id %>
+      <p><%= link_to "プロフィール編集", edit_user_path(user), class: "fas fa-user-edit" %></p>
+    <% end %><br />
   </div>
 </div>

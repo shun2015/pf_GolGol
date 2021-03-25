@@ -21,16 +21,6 @@ class Post < ApplicationRecord
       chart_date << [ post.date.strftime('%Y-%m-%d'), post.score ]
     end
     return chart_date
-    #order(date: :asc).pluck('date', 'score').to_h
-    # order(date: :asc).map do |post|
-    #   [ post.date.strftime('%Y年%m月%d日'), post.score ]
-    # end
-    # now = Time.now
-    # return [
-    #   [now, 60],
-    #   [now.since(1.days), 65],
-    #   [now.since(2.days), 68],
-    # ]
   end
   def create_notification(current_user, user)
     past_notices = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, user.id, id, 'favorite'])

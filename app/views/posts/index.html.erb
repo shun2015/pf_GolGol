@@ -1,48 +1,47 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-4 mt-5">
-      <h4>投稿検索</h4>
-      <%= search_form_for @q do |f| %>
-        <%= f.label :title_or_impression, "フリーワード" %>
-        <%= f.search_field :title_or_impression_cont, placeholder: "ゴルフ場名や県名など" %><br />
-
-        <%= f.submit "検索" %>
-      <% end %>
-    </div>
-
-    <div class="col-md-8">
-      <h4>投稿一覧</h4>
-      <table class="table">
-        <tr>
-          <th>ユーザー名</th>
-          <th>タイトル</th>
-          <th>画像</th>
-          <th>コメント件数</th>
-        </tr>
-        <tr>
-        <% @post_s.each do |post| %>
-          <td>
-            <%= link_to post_path(post) do %>
-              <%= post.user.name %>
-            <% end %>
-          </td>
-          <td><%= post.title %></td>
-          <td>
-            <% if post.post_images.present? %>
-              <% post.post_images.each do |image| %>
-                <%= attachment_image_tag image, :image, :size =>"50x50" %>
-              <% end %>
-            <% else %>
-              画像はありません。
-            <% end %>
-          </td>
-          <td>
-            <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
-          </td>
-        </tr>
+    <div class="col-md-3 mt-5">
+      <div class="search_field text-center">
+        <h4>投稿検索</h4>
+        <%= search_form_for @q do |f| %>
+          <%= f.label :title_or_impression, "フリーワード" %>
+          <%= f.search_field :title_or_impression_cont, placeholder: "ゴルフ場名や県名など" %>
+          <%= f.submit "検索" %>
         <% end %>
-      </table>
-      <div class="pagination justify-content-center">
+      </div>
+    </div>
+  
+  
+    <div class="col-md-9">
+      <h4 class="mt-3">投稿一覧</h4>
+      <div class="row">
+        <% @post_s.each do |post| %>
+          <div class="col-md-4 mt-3">
+            <div class="card p-2">
+              <div class="card-title text-center text-overflow">
+                <%= link_to post_path (post) do %>
+                <%= post.title %>
+                <% end %>
+                </div>
+              <div class="card-img text-center">
+                <% if post.post_images.present? %>
+                  <% post.post_images.first(1).each do |image| %>
+                    <%= link_to post_path (post) do %>
+                      <%= attachment_image_tag image, :image, :size =>"230x230" %>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg', :size =>"200x200" %>
+                <% end %>
+              </div>
+              スコア：<%= post.score %><br>
+              <%= post.user.name %><br>
+              <%= post.created_at.strftime("%Y-%m-%d")%>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="pagination justify-content-center mt-3">
         <%= paginate @post_s %>
       </div>
     </div>

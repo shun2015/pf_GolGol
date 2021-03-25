@@ -1,6 +1,6 @@
 <div class="container mt-4">
-  <div class="row">
-    <div class="col">
+  <div class="row text-center">
+    <div class="col-md-4 offset-4">
       <h4>投稿フォーム</h4>
       <% if @post.errors.any? %>
         <%= @post.errors.count %>件のエラーが発生しました<br>
@@ -16,9 +16,9 @@
         <h4>スコア</h4>
         <%= f.text_field :score %>
         <h4>画像</h4>
-        <%= f.attachment_field :post_images_images, multiple: true %>
+        <div class="ml-5"><%= f.attachment_field :post_images_images, multiple: true %></div>
         <h4>内容</h4>
-        <%= f.text_area :impression %>
+        <%= f.text_area :impression, size: "35x5" %>
         <%= f.submit '投稿' %>
       <% end %>
     </div>
