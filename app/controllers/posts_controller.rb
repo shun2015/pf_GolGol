@@ -16,7 +16,7 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    @post_s = @q.result(distinct: true).page(params[:page]).per(10)
+    @post_s = @q.result(distinct: true).page(params[:page]).per(9)
   end
 
   def show
@@ -37,8 +37,11 @@ class PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to post_path(@post)
+    if @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
   
   def destroy

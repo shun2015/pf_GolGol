@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
-  get '/about' => "homes#about"
   get 'chat/:id' => 'chats#show', as: 'chat'
   get "/rank" => "users#rank"
   devise_for :users
@@ -18,5 +17,5 @@ Rails.application.routes.draw do
   end
   
   resources :chats, only: [:create]
-  resources :notifications, only: :index
+  resources :notifications, only: [:index, :destroy]
 end

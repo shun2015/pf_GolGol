@@ -1,54 +1,52 @@
-<div class="container m-3">
+<div class="container mt-5">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 pl-0 pr-3">
+      <div class="card w-100 p-3 bg-light">
       <%= render 'users/show', user: @user %>
+      </div>
     </div>
 
-    <div class="col-md-9">
-      <div>
-      <h4>スコア履歴</h4>
-      </div>
-      <% if @posts.chart_date.present? %>
-        <%= line_chart @posts.chart_date, min: 60, xtitle: "日付", ytitle: "スコア", width: "100%", height: "200px", discrete: true, curve: false %>
-      <% else%>
-      投稿がありません
-      <% end %>
-      <h4><%= @user.name %>さんの投稿一覧</h4>
-      <table class="table" style="table-layout:fixed;">
-        <tr>
-          <th></th>
-          <th>プレー日</th>
-          <th>スコア</th>
-          <th>画像</th>
-          <th style="width:200px;">内容</th>
-          <th></th>
-        </tr>
-        <% @posts.each do |post| %>
-          <tr>
-            <td class="py-md-0">
-              <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", :size =>"50x50" %>
-            </td>
-            <td><%= post.date.strftime('%Y-%m-%d') %></td>
-            <td><%= post.score %></td>
-            <td>
-              <% if post.post_images.present? %>
-                <% post.post_images.each do |image| %>
-                  <%= attachment_image_tag image, :image, :size =>"30x30" %>
-                <% end %>
-              <% else %>
-
-                <% end %>
-            </td>
-            <td class ="text-overflow"><%= post.impression %></td>
-            <td><%= link_to "詳細", post_path(post) %>
-
-            <% if post.user == current_user %>
-              <%= link_to "削除", post_path(post), method: :delete, data: {confirm: "削除しますか？"} %>
-            <% end %>
-            </td>
-          </tr>
+    <div class="col-md-9 pl-4 pr-0">
+        <div class="row">
+          <div class="col-md-3"><h4>スコア履歴</h4></div>
+          <div class="col-md-3 offset-6"><h4><%= link_to '新規投稿', new_post_path, class:"btn btn-info" %></h4></div>
+        </div>
+        <% if @posts.chart_date.present? %>
+          <%= line_chart @posts.chart_date, min: 60, xtitle: "日付", ytitle: "スコア", width: "100%", height: "200px", discrete: true, curve: false %>
+        <% else%>
+          投稿がありません
         <% end %>
-      </tabele>
+        <div class="my-post mt-3">
+          <h4><%= @user.name %>さんの投稿一覧</h4>
+          <table class="table" style="table-layout:fixed;">
+            <tr>
+              <th>タイトル</th>
+              <th>プレー日</th>
+              <th>スコア</th>
+              <th>画像</th>
+              <th style="width:200px;">内容</th>
+            </tr>
+            <% @posts.each do |post| %>
+              <tr>
+                <td class="text-overflow">
+                  <%= link_to post_path(post) do %>
+                    <%= post.title %></td>
+                  <% end %>
+                <td><%= post.date.strftime('%Y-%m-%d') %></td>
+                <td><%= post.score %></td>
+                <td>
+                  <% if post.post_images.present? %>
+                    <% post.post_images.each do |image| %>
+                      <%= attachment_image_tag image, :image, :size =>"30x30" %>
+                    <% end %>
+                  <% else %>
+                  <% end %>
+                </td>
+                <td class ="text-overflow"><%= post.impression %></td>
+              </tr>
+            <% end %>
+          </table>
+      </div>
     </div>
   </div>
 </div>

@@ -13,7 +13,7 @@
   <header class="shadow-sm">
     <nav class="navbar navbar-expand-md navbar-light bg-success">
       <div class="container my-3">
-        <%= link_to 'トップページ', root_path, class:"text-light" %>
+        <%= link_to image_tag('logo.png'), '/', class:"text-light" %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -36,9 +36,6 @@
                 <%= link_to '投稿一覧', posts_path, class:"text-light" %>
               </li>
               <li class="nav-item mr-3">
-                <%= link_to '投稿フォーム', new_post_path, class:"text-light" %>
-              </li>
-              <li class="nav-item mr-3">
                 <%= link_to 'ランキング', rank_path, class:"text-light" %>
               </li>
               <li class="nav-item mr-3">
@@ -57,7 +54,12 @@
       </div>
     </nav>
   </header>
-  <body>
+  <body class="bg-light">
     <%= yield %>
   </body>
+  <footer class="footer bg-success">
+    <div class="container">
+      <p class="text-center mt-3">GolGol</p>
+    </div>
+  </footer>
 </html>
