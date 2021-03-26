@@ -9,7 +9,7 @@ ja:
 
   time:
     formats:
-      default: "%Y/%m/%"
+      default: "%Y/%m/%d"
 
   datetime:
     distance_in_words:
@@ -82,6 +82,12 @@ ja:
 
   activerecord:
     attributes:
+      user:
+        email: メールアドレス
+        name: ユーザー名
+        password: パスワード
+        age: 年齢
+        profile_score: 平均スコア
       post:
         title: タイトル
         impression: 内容

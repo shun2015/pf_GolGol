@@ -21,9 +21,7 @@ class User < ApplicationRecord
   
   validates :name, presence: true
   validates :age, presence: true
-  validates :address, presence: true
-  validates :gender, presence: true
-  validates :average_score, presence: true
+  validates :profile_score, presence: true
   validates :introduction, length: { maximum: 150 }
   
   attachment :profile_image

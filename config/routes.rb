@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   get 'chat/:id' => 'chats#show', as: 'chat'
   get "/rank" => "users#rank"
   devise_for :users
-  
-  resources :users, only: [:index, :show, :edit, :update]do
+  get "/withdrawal" => "users#destroy"
+  resources :users, only: [:index, :show, :edit, :update, :destroy]do
     resource :relationships, only: [:create, :destroy]
       member do
         get :following, :followers
