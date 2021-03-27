@@ -4,14 +4,21 @@
       <h1>フォロワー</h1>
       <table class="table">
         <% if @users.present? %>
+        <tr class="table-secondary">
+          <th>ユーザー名</th>
+          <th>年齢</th>
+          <th>住所</th>
+          <th></th>
+          <th></th>
+        </tr>
           <% @users.each do |user| %>
-            <tr>
+            <tr class="bg-light">
               <td><%= user.name %></td>
               <td>フォロー数:<%= user.following.count %></td>
               <td>フォロワー数:<%= user.followers.count %></td>
               <td>
                 <% if current_user != user %>
-                  <%= link_to 'chatを始める', chat_path(user.id)%>
+                  <%= link_to 'chatを始める', chat_path(user.id, anchor: 'saikabu')%>
                 <% end %>
               </td>
               <td><%= link_to "詳細", user_path(user) %></td>

@@ -1,17 +1,23 @@
 <div class="row">
-  <div class="col-md-2 offset-1 mt-5">
+  <div class="col-md-3 offset-4 mt-5">
     <h5>通知</h5>
   </div>
-  <div class="col-md-4 offset-1 mt-5">
+  <div class="col-md-4 mt-5">
     <%= link_to "通知削除", notification_path(@notifications), method: :delete, data: {confirm: "削除しますか？"}, class: "text-danger fas fa-trash" %>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-10 offset-1 mt-2">
-    <% if @notifications.exists? %>
-      <p class="mt-3"><%= render @notifications %></p>
-    <% else %>
-      <p>通知はありません</p>
-    <% end %>
-    </div>  
-</div>  
+  <div class="col-md-6 offset-4 mt-5 pl-4">
+  <table>
+    <tr>
+      <th>
+        <% if @notifications.exists? %>
+          <p><%= render @notifications %></p>
+        <% else %>
+          <p>通知はありません</p>
+        <% end %>
+      </th>
+    </tr>
+  </table>
+  </div>
+</div>

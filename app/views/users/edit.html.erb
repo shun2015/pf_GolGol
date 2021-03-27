@@ -1,20 +1,20 @@
 <div class="container mt-4">
   <div class="row text-center">
-    <div class="col-md-6 offset-3 bg-light">
+    <div class="col-md-6 offset-3">
         <h4>プロフィール編集</h4>
         <%= form_with model:@user, local:true do |f| %>
-        
+
           <div class="field mt-3">
             <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
             <label for="inputImage" class="mb-4">プロフィール画像</label>
             <div class="ml-5"><%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %></div>
           </div>
-          
+
           <div class="field my-1">
             <label for="inputName" class="m-0">ユーザー名</label><br>
             <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
           </div>
-          
+
           <div class="field-gender">
             <label for="inputGender" class="m-0">性別</label><br>
             <%= f.label :man, "男性"  %>
@@ -22,28 +22,33 @@
             <%= f.label :woman, "女性"  %>
             <%= f.radio_button :gender, :女性 %>
           </div>
-          
+
           <div class="field my-1">
             <label for="inputAddress" class="m-0">住所</label><br>
             <%= f.select :address, User.addresses.keys, {} %>
           </div>
-          
+
           <div class="field my-1">
             <label for="inputAge" class="m-0">年齢</label><br>
             <%= f.select :age, [["10代", "10"], ["20代", "20"], ["30代", "30"], ["40代", "40"], ["50代", "50"], ["60代", "60"], ["70代", "70"], ["80代", "80"]], include_blank: "選択して下さい" %><br />
           </div>
-          
+
           <div class="field my-1">
             <label for="inputProfile_score" class="m-0">平均スコア</label><br>
             <%= f.select :profile_score, [["130代", "130"],["120代", "120"], ["110代", "110"], ["100代", "100"], ["90代", "90"], ["80代", "80"], ["70代", "70"], ["60代", "60"]], include_blank: "選択して下さい" %><br />
           </div>
-          
+
           <label for="inputIntroduction">紹介文</label><br />
           <%= f.text_area :introduction, id:"inputIntroduction", placeholder:"紹介文", size: "50x5" %><br />
 
           <%= f.submit "変更を保存" %>
         <% end %>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col md-3 offset-3">
+      <p class="text-center mt-3"><%= link_to "退会する",user_path(current_user.id), class: "destroy-user text-danger", method: :delete, "data-confirm" => "データが全て削除されます。本当に退会しますか？" %></p>
     </div>
   </div>
 </div>

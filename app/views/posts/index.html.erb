@@ -17,12 +17,12 @@
       <div class="row">
         <% @post_s.each do |post| %>
           <div class="col-md-4 mt-3">
-            <div class="card p-2">
+            <div class="card p-2 bg-light">
               <div class="card-title text-center text-overflow">
                 <%= link_to post_path (post) do %>
-                <%= post.title %>
+                  <%= post.title %>
                 <% end %>
-                </div>
+              </div>
               <div class="card-img text-center">
                 <% if post.post_images.present? %>
                   <% post.post_images.first(1).each do |image| %>

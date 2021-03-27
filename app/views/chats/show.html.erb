@@ -15,7 +15,7 @@
           <tbody>
             <tr>
               <th>
-                <p style="text-align: left;"><%= chat.message %><br><%= chat.created_at.strftime("%Y-%m-%d-%H:%M") %></p>
+                <p style="text-align: left;"><%= chat.message %><br><%= "(#{time_ago_in_words(chat.created_at)}前)" %></p>
               </th>
               <th></th>
             </tr>
@@ -25,14 +25,14 @@
             <tr>
               <th></th>
               <th>
-                <p style="text-align: right;"><%= chat.message %><br><%= chat.created_at.strftime("%Y-%m-%d-%H:%M") %></p>
+                <p style="text-align: right;"><%= chat.message %><br><%= "(#{time_ago_in_words(chat.created_at)}前)" %></p>
               </th>
             </tr>
           </tbody>
           <% end %>
         <% end %>
       </table>
-      <div style="text-align:center;">
+      <div class="mb-3" style="text-align:center;" id="saikabu"><!--idがアンカーリンクの指定位置-->
         <%= form_with model: @chat do |f| %>
           <%= f.text_field :message %>
           <%= f.hidden_field :room_id %>
