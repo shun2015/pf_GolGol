@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   has_many :notifications, dependent: :destroy
   
   validates :title, length: { in: 1..50 }
-  validates :score, presence: true
+  validates :score, presence: true, numericality: {only_integer: true}
   validates :impression, length: { in: 1..500 }
   
   accepts_attachments_for :post_images, attachment: :image

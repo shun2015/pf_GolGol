@@ -14,8 +14,8 @@
           <% @users.each do |user| %>
             <tr class="bg-light">
               <td><%= user.name %></td>
-              <td>フォロー数:<%= user.following.count %></td>
-              <td>フォロワー数:<%= user.followers.count %></td>
+              <td><%= user.age %>代</td>
+              <td><%= user.address %></td>
               <td>
                 <% if current_user != user %>
                   <%= link_to 'chatを始める', chat_path(user.id, anchor: 'saikabu')%>
