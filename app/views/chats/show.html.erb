@@ -32,7 +32,7 @@
           <% end %>
         <% end %>
       </table>
-      <div style="text-align:center;">
+      <div class="mb-3" style="text-align:center;" id="saikabu"><!--idがアンカーリンクの指定位置-->
         <%= form_with model: @chat do |f| %>
           <%= f.text_field :message %>
           <%= f.hidden_field :room_id %>

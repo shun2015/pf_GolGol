@@ -20,11 +20,6 @@ html {
   position: relative;
   box-sizing: border-box;
 }
-
-body {
-  margin-bottom: 3em;
-}
-
 .top-container {
   background-image: image-url("courtney.jpg");
   height: 710px;
@@ -33,10 +28,24 @@ body {
   text-align: center;
   padding-top: 250px;
 }
+body {
+  margin-bottom: 3em;
+  background-color:#eaf6fd;
+}
 .footer {
   bottom: 0;
   width: 100%;
   height: 3em;
   position: absolute;
   bottom: 0;
+}
+// 範囲内で自動で改行
+.word-break {
+  word-break: break-all;
+}
+// オーバーした文字を・・・で表示
+.text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

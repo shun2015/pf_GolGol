@@ -1,18 +1,19 @@
 <div class="container mt-4">
   
   <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-10">
       <h4>投稿履歴の<br>平均スコアランキング</h4>
       <% avg = 0 %>
       <% j = 1 %>
-      <table class="table">
-        <tr>
+      <table class="table table-hover">
+        <tr class="table-secondary">
           <th>順位</th>
           <th>ユーザー名</th>
           <th>平均スコア</th>
+          <th>年齢</th>
         </tr>
         <% @user_avg.each.with_index(1) do |user, i| %>
-          <tr>
+          <tr class="bg-light">
             <% if i == 1 %>
               <% avg = user.average_score %>
             <% end %>
@@ -26,6 +27,7 @@
               </td>
               <td><%= user.average_score %></td>
               <% avg = user.average_score %>
+              <td><%= user.age %>代</td>
             <!--同順位の表示-->
             <% else %>
               <% avg = user.average_score %>
@@ -36,9 +38,10 @@
                 <% end %>
               </td>
               <td><%= user.average_score %></td>
+              <td><%= user.age %>代</td>
             <% end %>
-          <% end %>
-        </tr>
+          </tr>
+        <% end %>
       </table>
     </div>
   </div>
