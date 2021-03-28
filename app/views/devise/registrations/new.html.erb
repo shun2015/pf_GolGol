@@ -22,12 +22,12 @@
         <%= f.radio_button :gender, :女性 %>
       </div>
       <div class="field text-center">
-        <%= f.label :address, "住所" %><br />
-        <%= f.select :address, User.addresses.keys, {}, include_blank: "選択して下さい" %>
-      </div>
-      <div class="field text-center">
         <%= f.label :age, "年齢" %><br />
         <%= f.select :age, [["10代", "10"], ["20代", "20"], ["30代", "30"], ["40代", "40"], ["50代", "50"], ["60代", "60"], ["70代", "70"], ["80代", "80"]], include_blank: "選択して下さい" %>
+      </div>
+      <div class="field text-center">
+        <%= f.label :address, "住所" %><br />
+        <%= f.select :address, User.addresses.keys, {}, include_blank: "選択して下さい" %>
       </div>
       <div class="field text-center">
         <%= f.label :profile_score, "平均スコア" %><br />

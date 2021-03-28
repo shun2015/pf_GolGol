@@ -9,7 +9,7 @@
     <div class="col-md-8 offset-1">
       <div class="row">
         <div class="col-md-8">
-          <h4><%= @post.title %></h4>
+          <h3><%= @post.title %></h>
         </div>
         <div class="col-md-3">
           <div>
@@ -24,7 +24,7 @@
       </div>
       <div class="row mt-4">
         <div class="col-md-5">
-          <p>プレー日：<%= @post.date.strftime('%Y年%m月%d日') %></p>
+          <p><strong>プレー日：</strong><%= @post.date.strftime('%Y年%m月%d日') %></p>
         </div>
         <div class="col-md-2 offset-3">
           <div class="favorite">
@@ -37,12 +37,12 @@
       </div>
         <div class="row">
           <div class="col-md-4">
-          <p>スコア：<%= @post.score %></p>
+          <p><strong>スコア：</strong><%= @post.score %></p>
           </div>
         </div>
         <div class="row">
           <div class="col-md-10 mb-3">
-          内容<br>
+          <strong>内容</strong><br>
           <!--投稿通りの改行で表示-->
           <%= safe_join(@post.impression.split("\n"),tag(:br)) %>
           </div>
