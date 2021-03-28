@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   
   validates :title, length: { in: 1..50 }
   validates :score, presence: true, numericality: {only_integer: true}
-  validates :impression, length: { in: 1..500 }
+  validates :impression, presence: true, length: { maximum: 300 }
   
   accepts_attachments_for :post_images, attachment: :image
 

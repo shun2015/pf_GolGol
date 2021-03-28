@@ -3,9 +3,9 @@
     <div class="col-md-6 offset-3">
         <h4>プロフィール編集</h4>
         <% if @user.errors.any? %>
-          <%= @user.errors.count %>件のエラーが発生しました<br>
+          <h3><%= @user.errors.count %>件のエラーが発生しました</h3>
           <% @user.errors.full_messages.each do |message| %>
-            <%= message %><br>
+            <div class="text-danger"><%= message %></div>
           <% end %>
         <% end %>
         <%= form_with model:@user, local:true do |f| %>
@@ -30,15 +30,15 @@
           </div>
 
           <div class="field my-1">
-            <label for="inputAddress" class="m-0">住所</label><br>
-            <%= f.select :address, User.addresses.keys, {} %>
-          </div>
-
-          <div class="field my-1">
             <label for="inputAge" class="m-0">年齢</label><br>
             <%= f.select :age, [["10代", "10"], ["20代", "20"], ["30代", "30"], ["40代", "40"], ["50代", "50"], ["60代", "60"], ["70代", "70"], ["80代", "80"]], include_blank: "選択して下さい" %><br />
           </div>
 
+          <div class="field my-1">
+            <label for="inputAddress" class="m-0">住所</label><br>
+            <%= f.select :address, User.addresses.keys, {} %>
+          </div>
+          
           <div class="field my-1">
             <label for="inputProfile_score" class="m-0">平均スコア</label><br>
             <%= f.select :profile_score, [["130代", "130"],["120代", "120"], ["110代", "110"], ["100代", "100"], ["90代", "90"], ["80代", "80"], ["70代", "70"], ["60代", "60"]], include_blank: "選択して下さい" %><br />
