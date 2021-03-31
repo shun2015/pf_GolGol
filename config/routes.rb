@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   get 'chat/:id' => 'chats#show', as: 'chat'
   get "/rank" => "users#rank"
-  get "/withdrawal" => "users#destroy"
 
   resources :users, only: [:index, :show, :edit, :update, :destroy]do
     resource :relationships, only: [:create, :destroy]
