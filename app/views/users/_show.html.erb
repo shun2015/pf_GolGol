@@ -28,6 +28,7 @@
   <%= link_to followers_user_path(@user) do %>
     <%= @user.followers.count %>
   <% end %><br>
+<p>ユーザーレベル<%= @user.level %></p>
 </div>
 <div class="text-center">
   <% unless @user == current_user %>
