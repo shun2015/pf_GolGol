@@ -9,11 +9,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     @post.user_id = current_user.id
     # 投稿するごとにレベルが上がる
-    if @user.exp_sum == 0
-      @user.exp_sum + 1
-    else
-      @user.exp_sum += @post.exp.to_i
-    end
+    @user.exp_sum += @post.exp.to_i
     if @user.level == 1
       @user.level += @user.exp_sum.to_i
     else
