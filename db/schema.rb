@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_064930) do
+ActiveRecord::Schema.define(version: 2021_04_02_162452) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_064930) do
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "exp"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -102,6 +103,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_064930) do
     t.integer "address", null: false
     t.text "introduction", default: "", null: false
     t.integer "profile_score"
+    t.integer "exp_sum", default: 0
+    t.integer "level", default: 1
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

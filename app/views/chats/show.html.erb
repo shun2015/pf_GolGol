@@ -34,7 +34,7 @@
       </table>
       <div class="mb-3" style="text-align:center;" id="saikabu"><!--idがアンカーリンクの指定位置-->
         <%= form_with model: @chat do |f| %>
-          <%= f.text_area :message %>
+          <%= f.text_area :message, size: "30x1" %>
           <%= f.hidden_field :room_id %>
           <%= f.submit "送信" %>
         <% end %>
