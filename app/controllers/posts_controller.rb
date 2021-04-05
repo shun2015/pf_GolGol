@@ -6,10 +6,19 @@ class PostsController < ApplicationController
 
   def create
     @user = User.find(current_user.id)
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
     @post.user_id = current_user.id
-    @user.exp_sum += @post.exp.to_i
-    @user.level = @user.exp_sum.to_i / 100
+    # 投稿するごとにレベルが上がる
+    if @user.exp_sum == 0
+      @user.exp_sum + 1
+    else
+      @user.exp_sum += @post.exp.to_i
+    end
+    if @user.level == 1
+      @user.level += @user.exp_sum.to_i
+    else
+      @user.level = @user.exp_sum.to_i + 1
+    end
     current_user.update(exp_sum: @user.exp_sum, level: @user.level)
     if @post.save
       redirect_to post_path(@post)

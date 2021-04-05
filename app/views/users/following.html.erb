@@ -18,7 +18,7 @@
               <td><%= user.address %></td>
               <td>
                 <% if current_user != user %>
-                  <%= link_to 'chatを始める', chat_path(user.id, anchor: 'saikabu')%>
+                  <%= link_to 'chatを始める', chat_path(user.id, anchor: 'saikabu'), class:"btn btn-outline-secondary"%>
                 <% end %>
               </td>
               <td><%= link_to "詳細", user_path(user) %></td>
