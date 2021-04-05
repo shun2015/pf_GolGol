@@ -29,6 +29,7 @@
     <%= @user.followers.count %>
   <% end %><br>
 <p>ユーザーレベル<%= @user.level %></p>
+<p>ユーザーレベル<%= @user.exp_sum %></p>
 </div>
 <div class="text-center">
   <% unless @user == current_user %>
