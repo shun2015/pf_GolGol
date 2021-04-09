@@ -2,6 +2,15 @@
   <div class="row">
     <div class="col-md-3 px-2 bg-light">
       <%= render 'users/show', user: @user %>
+      <% if @user.id == current_user.id %>
+        <h5>フォロワーの投稿</h5>
+        <div class="scroll">
+          <% @follow_post.each do |post| %>
+            <%= post.user.name %>
+            <%= post.title %><br>
+          <% end %>
+        </div>
+      <% end %>
     </div>
 
     <div class="col-md-9 pl-4 pr-0">
@@ -9,7 +18,7 @@
         <div class="col-md-3"><h4>スコア履歴</h4></div>
         <div class="col-md-3 offset-6"><h4><%= link_to '新規投稿', new_post_path, class:"btn btn-info" %></h4></div>
       </div>
-      
+
       <div class="bg-light py-3">
       <% if @posts.chart_date.present? %>
         <%= line_chart @posts.chart_date, min: 60, xtitle: "日付", ytitle: "スコア", width: "100%", height: "200px", discrete: true, curve: false %>

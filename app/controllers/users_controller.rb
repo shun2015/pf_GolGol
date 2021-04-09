@@ -8,6 +8,25 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
+    # フォロワーの投稿表示
+    @users = @user.following
+    @follow_post = []
+    if @users.present?
+      @users.each do |user|
+        posts = Post.where(user_id: user.id).order(created_at: :desc)
+        #取得したユーザーの投稿一覧を@postsに格納
+        @follow_post.concat(posts)
+      end
+        #@postsを新しい順に並べたい
+        @follow_post.sort_by!{|post| post.created_at}
+        if @follow_post.nil?
+          flash[:notice]="投稿がありません"
+          redirect_to("/")
+        end
+    else
+      flash[:notice]="フォローしてみましょう！"
+      redirect_to("/")
+    end
   end
 
   def edit
@@ -46,7 +65,7 @@ class UsersController < ApplicationController
   end
 
   def rank
-    @user_avg = User.all.joins(:posts).group(:id).select("AVG(posts.score) as average_score, users.*").order("average_score asc")
+    @user_avg = User.all.joins(:posts).group(:id).select("AVG(posts.score) as average_score, users.*").order("average_score asc").limit(10)
   end
 
   private
