@@ -49,11 +49,11 @@
         </div>
         <div class="row">
           <div class="col-md">
-            <% if @post.post_images.present? %>
-              <% @post.post_images.each do |image| %>
-                <%= attachment_image_tag image, :image, :size =>"200x200" %>
-              <% end %>
+          <% if @post.post_images.present? %>
+            <% @post.post_images.each do |image| %>
+              <%= attachment_image_tag image, :image, :size =>"200x200" %>
             <% end %>
+          <% end %>
           </div>
         </div>
         <div class="mt-3">
