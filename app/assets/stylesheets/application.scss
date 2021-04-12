@@ -53,3 +53,21 @@ body {
   height: 80px;
   overflow: auto;
 }
+.content {      
+    width:auto;
+    height: auto;
+}
+ 
+/*フェードイン表示*/
+.fadein {
+    opacity: 0;
+    animation: fadein 1s ease forwards;
+    font-size: 40px;
+    color: #fff;
+}
+@keyframes fadein {
+    100% {  opacity: 1;}
+}
+/*遅延の指定*/
+.txt01 {animation-delay: 1s;}
+.txt02 {animation-delay: 2s;}
