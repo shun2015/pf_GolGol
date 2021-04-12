@@ -13,19 +13,13 @@ class UsersController < ApplicationController
     @follow_post = []
     if @users.present?
       @users.each do |user|
-        posts = Post.where(user_id: user.id).order(created_at: :desc)
+        post_s = Post.where(user_id: user.id).order(created_at: :desc)
         #取得したユーザーの投稿一覧を@postsに格納
-        @follow_post.concat(posts)
+        @follow_post.concat(post_s)
       end
-        #@postsを新しい順に並べたい
-        @follow_post.sort_by!{|post| post.created_at}
-        if @follow_post.nil?
-          flash[:notice]="投稿がありません"
-          redirect_to("/")
-        end
-    else
-      flash[:notice]="フォローしてみましょう！"
-      redirect_to("/")
+      #@postsを新しい順に並べる
+      @follow_post.sort_by!{|post| post.created_at}
+      
     end
   end
 
@@ -46,7 +40,7 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
