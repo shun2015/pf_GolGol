@@ -1,21 +1,4 @@
-<div class="container mt-4">
-  
-  <div class="row justify-content-center">
-    <div class="col-md-10">
-      <ul class="nav nav-tabs" role="tablist">
-        <li class="active" role="presentation">
-          <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab">全体</a>｜
-        </li>
-        <li role="presentation">
-          <a aria-controls="tab_b" data-toggle="tab" href="#tab_b" role="tab">年代別</a>
-        </li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab-pane active" id="tab_a" role="tabpanel">
-          <%= render 'users/average', user_avg: @user_avg %>
-        </div>
-        <div class="tab-pane" id="tab_b" role="tabpanel">
-          <h4>投稿履歴の<br>平均スコアランキング（年齢）</h4>
+<h4>投稿履歴の<br>平均スコアランキング</h4>
           <% avg = 0 %>
           <% rank = 1 %>
           <table class="table table-hover">
@@ -25,7 +8,7 @@
               <th>平均スコア</th>
               <th>年齢</th>
             </tr>
-            <% @user_10.each.with_index(1) do |user, i| %>
+            <% user_avg.each.with_index(1) do |user, i| %>
               <tr class="bg-light">
                 <% if i == 1 %>
                   <% avg = user.average_score %>
@@ -56,9 +39,3 @@
               </tr>
             <% end %>
           </table>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</div>

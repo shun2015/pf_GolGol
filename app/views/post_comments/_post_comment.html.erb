@@ -5,33 +5,35 @@
   <div class="col-md-4 offset-5">
     <h5><%= post.post_comments.count %>件のコメント</h5>
   </div>
-  <% if post.post_comments.present? %>
-  <table class="table">
-    <tr class="table-secondary">
-      <th>ユーザー名</th>
-      <th>コメント</th>
-      <th></th>
-      <th></th>
-    </tr>
-      <% post.post_comments.each do |post_comment| %>
-      <tr class="bg-light">
-        <td width=150>
-          <%= link_to user_path(post_comment.user) do %>
-            <%= post_comment.user.name %>
-          <% end %>
-        </td>
-        <td width=300><%= post_comment.comment %></td>
-        <td width=130><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
-        <td width=70>
-          <% if post_comment.user == current_user %>
-            <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, class: "text-danger" %>
-          <% end %><br>
-        </td>
-      <% end %>
-    </tr>
-  </table>
-  <% else %>
-  <% end %>
+  <div class="comment-scroll">
+    <% if post.post_comments.present? %>
+    <table class="table">
+      <tr class="table-secondary">
+        <th>ユーザー名</th>
+        <th>コメント</th>
+        <th></th>
+        <th></th>
+      </tr>
+        <% post.post_comments.each do |post_comment| %>
+        <tr class="bg-light">
+          <td width=150>
+            <%= link_to user_path(post_comment.user) do %>
+              <%= post_comment.user.name %>
+            <% end %>
+          </td>
+          <td width=300><%= post_comment.comment %></td>
+          <td width=130><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+          <td width=70>
+            <% if post_comment.user == current_user %>
+              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, class: "text-danger" %>
+            <% end %><br>
+          </td>
+        <% end %>
+      </tr>
+    </table>
+    <% else %>
+    <% end %>
+  </div>
   <div class="comment-field my-5">
     <% if post_comment.errors.any? %>
       <% post_comment.errors.full_messages.each do |message| %>
