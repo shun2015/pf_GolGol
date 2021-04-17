@@ -1,64 +1,32 @@
 <div class="container mt-4">
-  
+<% tab_age = 0 %>
+<% user_age = 0 %>
   <div class="row justify-content-center">
     <div class="col-md-10">
       <ul class="nav nav-tabs" role="tablist">
         <li class="active" role="presentation">
           <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab">全体</a>｜
         </li>
-        <li role="presentation">
-          <a aria-controls="tab_b" data-toggle="tab" href="#tab_b" role="tab">年代別</a>
-        </li>
+        <% 8.times do |i| %>
+          <% tab_age += 10 %>
+          <li role="presentation">
+            <a aria-controls="tab<%= i %>" data-toggle="tab" href="#tab<%= i %>" role="tab"><%= tab_age %>代</a>｜
+          </li>
+        <% end %>
       </ul>
+
       <div class="tab-content">
         <div class="tab-pane active" id="tab_a" role="tabpanel">
           <%= render 'users/average', user_avg: @user_avg %>
         </div>
-        <div class="tab-pane" id="tab_b" role="tabpanel">
-          <h4>投稿履歴の<br>平均スコアランキング（年齢）</h4>
-          <% avg = 0 %>
-          <% rank = 1 %>
-          <table class="table table-hover">
-            <tr class="table-secondary">
-              <th>順位</th>
-              <th>ユーザー名</th>
-              <th>平均スコア</th>
-              <th>年齢</th>
-            </tr>
-            <% @user_10.each.with_index(1) do |user, i| %>
-              <tr class="bg-light">
-                <% if i == 1 %>
-                  <% avg = user.average_score %>
-                <% end %>
-                <% if user.average_score != avg %>
-                  <% rank = i %>
-                  <td>第<%= rank %>位</td>
-                  <td>
-                    <%= link_to user_path(user) do %>
-                      <%= user.name %>
-                    <% end %>
-                  </td>
-                  <td><%= user.average_score %></td>
-                  <% avg = user.average_score %>
-                  <td><%= user.age %>代</td>
-                <!--同順位の表示-->
-                <% else %>
-                  <% avg = user.average_score %>
-                  <td>第<%= rank %>位</td>
-                  <td>
-                    <%= link_to user_path(user) do %>
-                      <%= user.name %>
-                    <% end %>
-                  </td>
-                  <td><%= user.average_score %></td>
-                  <td><%= user.age %>代</td>
-                <% end %>
-              </tr>
-            <% end %>
-          </table>
-        </div>
+        <% 8.times do |i| %>
+          <div class="tab-pane" id="tab<%= i %>" role="tabpanel">
+            <% @user_avg_age = User.joins(:posts).group(:id).select("AVG(posts.score) as average_score, users.*").where(age: user_age += 10).order("average_score asc").limit(10) %>
+            <%= render 'users/aaa', user_avg_age: @user_avg_age %>
+          </div>
+        <% end %>
       </div>
-      
+
     </div>
   </div>
 </div>

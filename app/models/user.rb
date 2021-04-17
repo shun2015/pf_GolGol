@@ -12,18 +12,18 @@ class User < ApplicationRecord
   has_many :follower_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following, through: :following_relationships, source: :followed
   has_many :followers, through: :follower_relationships, source: :follower
-  
+
   has_many :user_rooms
   has_many :chats
 
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
-  
+
   validates :name, presence: true, length: { maximum: 10 }, uniqueness: true
   validates :age, presence: true
   validates :profile_score, presence: true
   validates :introduction, length: { maximum: 150 }
-  
+
   attachment :profile_image
   enum gender: { 男性: 0, 女性: 1}
   enum address:{
@@ -50,14 +50,10 @@ class User < ApplicationRecord
   def following?(user)
     following.include?(user)
   end
-  
+
   attr_accessor :average
 
   def average_score
-    if posts.present?
       self.posts.sum(:score) / self.posts.length
-    else
-      0
-    end
   end
 end
