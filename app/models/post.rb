@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   has_many :notifications, dependent: :destroy
   
   validates :title, length: { in: 1..50 }
-  validates :score, presence: true, numericality: {only_integer: true}
+  validates :score, numericality: {only_integer: true}, allow_blank: true #整数のみスコアが未入力でも投稿可能
   validates :impression, presence: true, length: { maximum: 300 }
   
   accepts_attachments_for :post_images, attachment: :image
@@ -22,6 +22,8 @@ class Post < ApplicationRecord
     end
     return chart_date
   end
+  
+  # 投稿いいね通知
   def create_notification(current_user, user)
     past_notices = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, user.id, id, 'favorite'])
      
@@ -34,6 +36,7 @@ class Post < ApplicationRecord
       notification.save
     end
   end
+  # 投稿コメント通知
   def create_notification_comment(current_user, user)
     past_notices = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, user.id, id, 'comment'])
      

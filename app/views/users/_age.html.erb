@@ -8,7 +8,7 @@
     <th>平均スコア</th>
     <th>年齢</th>
   </tr>
-  <% user_avg.each.with_index(1) do |user, i| %>
+  <% user_avg_age.each.with_index(1) do |user, i| %>
     <tr class="bg-light">
       <% if i == 1 %>
         <% avg = user.average_score %>
