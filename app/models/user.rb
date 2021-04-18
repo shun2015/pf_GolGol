@@ -51,9 +51,4 @@ class User < ApplicationRecord
     following.include?(user)
   end
 
-  attr_accessor :average
-
-  def average_score
-      self.posts.sum(:score) / self.posts.length
-  end
 end

@@ -21,7 +21,7 @@
             <%= user.name %>
           <% end %>
         </td>
-        <td><%= user.average_score %></td>
+        <td><%= user.average_score.floor(1).to_f %></td>
         <% avg = user.average_score %>
         <td><%= user.age %>代</td>
       <!--同順位の表示-->
@@ -33,7 +33,7 @@
             <%= user.name %>
           <% end %>
         </td>
-        <td><%= user.average_score %></td>
+        <td><%= user.average_score.floor(1).to_f %></td>
         <td><%= user.age %>代</td>
       <% end %>
     </tr>

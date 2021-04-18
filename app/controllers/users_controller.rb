@@ -59,7 +59,7 @@ class UsersController < ApplicationController
 
   def rank
     @user_avg = User.joins(:posts).group(:id).select("AVG(posts.score) as average_score, users.*").order("average_score asc").limit(10)
-    end
+  end
 
   private
 

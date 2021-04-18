@@ -22,6 +22,8 @@ class Post < ApplicationRecord
     end
     return chart_date
   end
+  
+  # 投稿いいね通知
   def create_notification(current_user, user)
     past_notices = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, user.id, id, 'favorite'])
      
@@ -34,6 +36,7 @@ class Post < ApplicationRecord
       notification.save
     end
   end
+  # 投稿コメント通知
   def create_notification_comment(current_user, user)
     past_notices = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, user.id, id, 'comment'])
      
