@@ -19,8 +19,11 @@
         <div class="tab-pane active" id="tab_a" role="tabpanel">
           <%= render 'users/average', user_avg: @user_avg %>
         </div>
+        <% title_age = 0%>
         <% 8.times do |i| %>
+          <% title_age += 10 %>
           <div class="tab-pane" id="tab<%= i %>" role="tabpanel">
+            <h4>投稿履歴の<br>平均スコアランキング(<%= title_age %>代)</h4>
             <% @user_avg_age = User.joins(:posts).group(:id).select("AVG(posts.score) as average_score, users.*").where(age: user_age += 10).order("average_score asc").limit(10) %>
             <%= render 'users/age', user_avg_age: @user_avg_age %>
           </div>
