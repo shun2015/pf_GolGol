@@ -40,7 +40,7 @@
         <%= message %>
       <% end %>
     <% end %>
-  
+
     <%= form_with(model:[post, post_comment], remote: true) do |f| %>
       <%= f.text_area :comment,placeholder: "コメント", size: "50x2" %><br>
       <%= f.submit "送信する" %>
