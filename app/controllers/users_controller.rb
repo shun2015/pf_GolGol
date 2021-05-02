@@ -58,8 +58,7 @@ class UsersController < ApplicationController
   end
 
   def rank
-    #to_fで小数点以下を表示させ、floor()で小数点以下の桁数を引数で
-    @user_avg = User.joins(:posts).group(:id).select("AVG(posts.score) as average_score, users.*").floor(1).to_f.order("average_score asc").limit(10)
+    @user_avg = User.joins(:posts).group(:id).select("AVG(posts.score) as average_score, users.*").order("average_score asc").limit(10)
   end
 
   private
