@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
  describe 'バリデーションのテスト' do
-    subject { post.valid? } 
-
+    subject { post.valid? }
     let(:post) { build(:post) }
 
     context 'titleカラム' do
