@@ -1,4 +1,3 @@
-<h4>投稿履歴の<br>平均スコアランキング</h4>
 <% avg = 0 %>
 <% rank = 1 %>
 <table class="table table-hover">
@@ -21,7 +20,7 @@
             <%= user.name %>
           <% end %>
         </td>
-        <td><%= user.average_score.floor(1).to_f %></td>
+        <td><%= user.average_score.floor(1).to_f %></td><!--to_fで小数点以下を表示させ、floor()で小数点以下の桁数を引数で指定-->
         <% avg = user.average_score %>
         <td><%= user.age %>代</td>
       <!--同順位の表示-->
